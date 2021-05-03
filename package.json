@@ -4,8 +4,16 @@
   "description": "Web based graphics in Rust",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack serve --port 6969"
   },
   "author": "Billy Hadlow",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@wasm-tool/wasm-pack-plugin": "^1.4.0",
+    "html-webpack-plugin": "^5.3.1",
+    "text-encoding": "^0.7.0",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
 }
