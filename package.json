@@ -4,6 +4,7 @@
   "description": "Web based graphics in Rust",
   "main": "index.js",
   "scripts": {
+	"build": "webpack --mode production",
     "dev": "webpack serve --port 6969"
   },
   "author": "Billy Hadlow",
