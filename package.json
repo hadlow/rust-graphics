@@ -1,0 +1,11 @@
+{
+  "name": "rust-graphics",
+  "version": "0.1.0",
+  "description": "Web based graphics in Rust",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Billy Hadlow",
+  "license": "ISC"
+}
