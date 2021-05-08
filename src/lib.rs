@@ -1,6 +1,9 @@
 extern crate wasm_bindgen;
 
 use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
+
+mod setup;
 
 #[wasm_bindgen]
 extern "C"
@@ -21,7 +24,8 @@ impl Client
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self
     {
-        log("hello");
+        let context = setup::create_context().unwrap();
+
         Self
         {
 
