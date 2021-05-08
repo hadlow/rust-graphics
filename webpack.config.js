@@ -7,6 +7,7 @@ module.exports = (env, args) => {
     const isProductionMode = (args.mode === 'production');
 
     return {
+		mode: isProductionMode ? 'production' : 'development',
 		entry: './index.js',
         output: {
             path: path.resolve(__dirname, 'dist'),

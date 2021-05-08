@@ -10,7 +10,31 @@ extern "C"
 }
 
 #[wasm_bindgen]
-pub fn hello_world()
+pub struct Client
 {
-    log("hello world");
+    
+}
+
+#[wasm_bindgen]
+impl Client
+{
+    #[wasm_bindgen(constructor)]
+    pub fn new() -> Self
+    {
+        log("hello");
+        Self
+        {
+
+        }
+    }
+
+    pub fn update(&mut self, time: f32, height: f32, width: f32) -> Result<(), JsValue>
+    {
+        Ok(())
+    }
+
+    pub fn render(&self)
+    {
+        
+    }
 }
