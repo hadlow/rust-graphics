@@ -25,7 +25,7 @@ module.exports = (env, args) => {
             })
         ],
 		experiments: {
-			asyncWebAssembly: true
+			syncWebAssembly: true
 		}
     };
 }
