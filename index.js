@@ -1,20 +1,10 @@
 const rust = import('./pkg/index_bg');
 const canvas = document.getElementById('app');
-const gl = canvas.getContext('webgl', {
-	antialias: true,
-});
+const ctx = canvas.getContext('2d');
 
 const MAX_FPS = 60.0;
 
 rust.then(m => {
-	if(!gl) {
-		console.log('Error initializing GL');
-		return;
-	}
-
-	gl.enable(gl.BLEND);
-	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
 	const throttle = 1000.0 / MAX_FPS;
 	const client = new m.Client();
 	const startTime = Date.now();
@@ -37,8 +27,6 @@ rust.then(m => {
 				canvas.width = window.innerWidth;
 				canvas.clientWidth = window.innerWidth;
 				canvas.style.width = window.innerWidth;
-
-				gl.viewport(0, 0, window.innerWidth, window.innerHeight);
             }
 
 			let elapsedTime = time - startTime;
