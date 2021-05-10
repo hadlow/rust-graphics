@@ -25,15 +25,12 @@ impl Particle
 
     pub fn update(&mut self, context: &CanvasRenderingContext2d)
     {
-        self.position.x = self.position.x + self.velocity.x;
-        self.position.y = self.position.y + self.velocity.y;
+        self.position.add(&self.velocity);
     }
 
     pub fn render(&mut self, context: &CanvasRenderingContext2d)
     {
         context.move_to(self.position.x, self.position.y);
-        context
-            .arc(self.position.x, self.position.y, 5.0, 0.0, f64::consts::PI * 2.0)
-            .unwrap();
+        context.arc(self.position.x, self.position.y, 5.0, 0.0, f64::consts::PI * 2.0).unwrap();
     }
 }

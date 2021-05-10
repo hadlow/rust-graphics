@@ -1,7 +1,6 @@
 extern crate wasm_bindgen;
 
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::JsCast;
 use web_sys::*;
 
 mod setup;

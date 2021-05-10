@@ -14,4 +14,10 @@ impl Vector
             y: y,
         }
     }
+
+    pub fn add(&mut self, v: &Vector)
+    {
+        self.x = self.x + v.x;
+        self.y = self.y + v.y;
+    }
 }
