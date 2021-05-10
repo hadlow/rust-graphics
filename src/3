@@ -7,7 +7,6 @@ use web_sys::*;
 mod setup;
 mod element;
 mod vector;
-mod particle;
 
 #[wasm_bindgen]
 extern "C"
@@ -20,7 +19,7 @@ extern "C"
 pub struct Client
 {
     context: CanvasRenderingContext2d,
-    elements: Vec<Box<dyn element::Element>>,
+    elements: Vec<element::Element>,
 }
 
 #[wasm_bindgen]
