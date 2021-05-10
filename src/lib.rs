@@ -2,6 +2,7 @@ extern crate wasm_bindgen;
 
 use wasm_bindgen::prelude::*;
 use web_sys::*;
+use rand::Rng;
 
 mod setup;
 mod element;
@@ -30,9 +31,13 @@ impl Client
     {
         let context = setup::create_context().unwrap();
         let mut elements: Vec<particle::Particle> = Vec::new();
-        let particle: particle::Particle = particle::Particle::new(50.0, 50.0, 1.0, 2.0);
 
-        elements.push(particle);
+        for n in 1..11
+        {
+            let particle: particle::Particle = particle::Particle::new(rand::thread_rng().gen_range(0, 100) as f64, rand::thread_rng().gen_range(0, 100) as f64, 1.0, 2.0);
+
+            elements.push(particle);
+        }
 
         Self
         {
