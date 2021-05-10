@@ -1,20 +1,20 @@
+use std::f64;
 use web_sys::*;
 
-use crate::element;
 use crate::vector;
 
 pub struct Particle
 {
-    position: vector::Vector,
-    velocity: vector::Vector,
+    pub position: vector::Vector,
+    pub velocity: vector::Vector,
 }
 
-impl element::Element for Particle
+impl Particle
 {
-    fn new(position: vector::Vector, velocity: vector::Vector) -> Self
+    pub fn new(position_x: f64, position_y: f64, velocity_x: f64, velocity_y: f64) -> Self
     {
-        let position = position;
-        let velocity = velocity;
+        let position = vector::Vector::new(position_x, position_y);
+        let velocity = vector::Vector::new(velocity_x, velocity_y);
 
         Self
         {
@@ -23,13 +23,17 @@ impl element::Element for Particle
         }
     }
 
-    fn update(&self, context: &CanvasRenderingContext2d)
+    pub fn update(&mut self, context: &CanvasRenderingContext2d)
     {
-        
+        self.position.x = self.position.x + self.velocity.x;
+        self.position.y = self.position.y + self.velocity.y;
     }
 
-    fn render(&self, context: &CanvasRenderingContext2d)
+    pub fn render(&mut self, context: &CanvasRenderingContext2d)
     {
-
+        context.move_to(self.position.x, self.position.y);
+        context
+            .arc(self.position.x, self.position.y, 5.0, 0.0, f64::consts::PI * 2.0)
+            .unwrap();
     }
 }

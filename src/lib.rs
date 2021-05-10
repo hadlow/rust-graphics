@@ -20,7 +20,7 @@ extern "C"
 pub struct Client
 {
     context: CanvasRenderingContext2d,
-    elements: Vec<Box<dyn element::Element>>,
+    elements: Vec<particle::Particle>,
 }
 
 #[wasm_bindgen]
@@ -30,11 +30,15 @@ impl Client
     pub fn new() -> Self
     {
         let context = setup::create_context().unwrap();
+        let mut elements: Vec<particle::Particle> = Vec::new();
+        let particle: particle::Particle = particle::Particle::new(50.0, 50.0, 1.0, 2.0);
+
+        elements.push(particle);
 
         Self
         {
             context: context,
-            elements: Vec::new(),
+            elements: elements,
         }
     }
 
@@ -42,7 +46,7 @@ impl Client
     {
         self.context.clear_rect(0.0, 0.0, width.into(), height.into());
 
-        for element in self.elements.iter()
+        for element in self.elements.iter_mut()
         {
             element.update(&self.context);
         }
@@ -50,13 +54,15 @@ impl Client
         Ok(())
     }
 
-    pub fn render(&self)
+    pub fn render(&mut self)
     {
         self.context.begin_path();
 
-        for element in self.elements.iter()
+        for element in self.elements.iter_mut()
         {
             element.render(&self.context);
         }
+
+        &self.context.stroke();
     }
 }
