@@ -34,7 +34,7 @@ impl Client
 
         for n in 1..11
         {
-            let particle: particle::Particle = particle::Particle::new(rand::thread_rng().gen_range(0, 100) as f64, rand::thread_rng().gen_range(0, 100) as f64, 1.0, 2.0);
+            let particle: particle::Particle = particle::Particle::new(rand::thread_rng().gen_range(0, 500) as f64, rand::thread_rng().gen_range(0, 500) as f64, 1.0, 2.0);
 
             elements.push(particle);
         }
@@ -52,7 +52,7 @@ impl Client
 
         for element in self.elements.iter_mut()
         {
-            element.update(&self.context);
+            element.update(&self.context, width, height);
         }
 
         Ok(())

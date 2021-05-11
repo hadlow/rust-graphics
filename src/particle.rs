@@ -23,9 +23,19 @@ impl Particle
         }
     }
 
-    pub fn update(&mut self, context: &CanvasRenderingContext2d)
+    pub fn update(&mut self, context: &CanvasRenderingContext2d, width: f32, height: f32)
     {
         self.position.add(&self.velocity);
+
+        if (self.position.x > width.into()) || (self.position.x < 0.0)
+        {
+            self.velocity.x = self.velocity.x * -1.0;
+        }
+
+        if (self.position.y > height.into()) || (self.position.y < 0.0)
+        {
+            self.velocity.y = self.velocity.y * -1.0;
+        }
     }
 
     pub fn render(&mut self, context: &CanvasRenderingContext2d)
