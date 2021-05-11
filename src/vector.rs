@@ -20,4 +20,37 @@ impl Vector
         self.x = self.x + v.x;
         self.y = self.y + v.y;
     }
+
+    pub fn subtract(&mut self, v: &Vector)
+    {
+        self.x = self.x - v.x;
+        self.y = self.y - v.y;
+    }
+    
+    pub fn multiply(&mut self, n: f64)
+    {
+        self.x = self.x * n;
+        self.y = self.y * n;
+    }
+
+    pub fn divide(&mut self, n: f64)
+    {
+        self.x = self.x / n;
+        self.y = self.y / n;
+    }
+
+    pub fn magnitude(&self) -> f64
+    {
+        (self.x * self.x).sqrt() + (self.y + self.y).sqrt()
+    }
+
+    pub fn normalize(&mut self)
+    {
+        let magnitude: f64 = self.magnitude();
+
+        if(magnitude != 0.0)
+        {
+            self.divide(magnitude);
+        }
+    }
 }
