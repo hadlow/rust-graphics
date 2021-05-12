@@ -32,7 +32,7 @@ rust.then(m => {
 			let elapsedTime = time - startTime;
 
 			client.update(elapsedTime, window.innerHeight, window.innerWidth);
-			client.render();
+			client.render(window.innerHeight, window.innerWidth);
 		}
 	}
 

@@ -34,7 +34,7 @@ impl Client
 
         for n in 1..11
         {
-            let particle: particle::Particle = particle::Particle::new(rand::thread_rng().gen_range(0, 500) as f64, rand::thread_rng().gen_range(0, 500) as f64, 1.0, 2.0);
+            let particle: particle::Particle = particle::Particle::new(rand::thread_rng().gen_range(0, 500) as f64, rand::thread_rng().gen_range(0, 500) as f64);
 
             elements.push(particle);
         }
@@ -48,8 +48,6 @@ impl Client
 
     pub fn update(&mut self, time: f32, height: f32, width: f32) -> Result<(), JsValue>
     {
-        self.context.clear_rect(0.0, 0.0, width.into(), height.into());
-
         for element in self.elements.iter_mut()
         {
             element.update(&self.context, width, height);
@@ -58,15 +56,13 @@ impl Client
         Ok(())
     }
 
-    pub fn render(&mut self)
+    pub fn render(&mut self, height: f32, width: f32)
     {
-        self.context.begin_path();
+        self.context.clear_rect(0.0, 0.0, width.into(), height.into());
 
         for element in self.elements.iter_mut()
         {
             element.render(&self.context);
         }
-
-        &self.context.stroke();
     }
 }

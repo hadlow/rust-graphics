@@ -7,24 +7,28 @@ pub struct Particle
 {
     pub position: vector::Vector,
     pub velocity: vector::Vector,
+    pub acceleration: vector::Vector,
 }
 
 impl Particle
 {
-    pub fn new(position_x: f64, position_y: f64, velocity_x: f64, velocity_y: f64) -> Self
+    pub fn new(position_x: f64, position_y: f64) -> Self
     {
         let position = vector::Vector::new(position_x, position_y);
-        let velocity = vector::Vector::new(velocity_x, velocity_y);
+        let velocity = vector::Vector::new(0.0, 0.0);
+        let acceleration = vector::Vector::new(-0.001, 0.001);
 
         Self
         {
             position: position,
             velocity: velocity,
+            acceleration: acceleration,
         }
     }
 
     pub fn update(&mut self, context: &CanvasRenderingContext2d, width: f32, height: f32)
     {
+        self.velocity.add(&self.acceleration);
         self.position.add(&self.velocity);
 
         if (self.position.x > width.into()) || (self.position.x < 0.0)
@@ -40,7 +44,11 @@ impl Particle
 
     pub fn render(&mut self, context: &CanvasRenderingContext2d)
     {
+        context.begin_path();
+
         context.move_to(self.position.x, self.position.y);
-        context.arc(self.position.x, self.position.y, 5.0, 0.0, f64::consts::PI * 2.0).unwrap();
+        context.arc(self.position.x, self.position.y, 10.0, 0.0, f64::consts::PI * 2.0).unwrap();
+
+        context.fill();
     }
 }
