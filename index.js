@@ -11,6 +11,21 @@ rust.then(m => {
 
 	let lastDraw = -1;
 
+	canvas.addEventListener('mousemove', (event) =>
+	{
+		client.update_mouse(event.offsetX, event.offsetY);
+	});
+
+	canvas.addEventListener('mousedown', (event) =>
+	{
+		client.update_mousedown(true);
+	});
+
+	canvas.addEventListener('mouseup', (event) =>
+	{
+		client.update_mousedown(false);
+	});
+
 	function render() {
 		window.requestAnimationFrame(render);
 
@@ -29,9 +44,7 @@ rust.then(m => {
 				canvas.style.width = window.innerWidth;
             }
 
-			let elapsedTime = time - startTime;
-
-			client.update(elapsedTime, window.innerHeight, window.innerWidth);
+			client.update(window.innerHeight, window.innerWidth);
 			client.render(window.innerHeight, window.innerWidth);
 		}
 	}

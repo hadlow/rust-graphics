@@ -48,7 +48,7 @@ impl Vector
     {
         let magnitude: f64 = self.magnitude();
 
-        if(magnitude != 0.0)
+        if magnitude != 0.0
         {
             self.divide(magnitude);
         }
