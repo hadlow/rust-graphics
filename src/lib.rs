@@ -11,13 +11,6 @@ mod vector;
 mod particle;
 
 #[wasm_bindgen]
-extern "C"
-{
-    #[wasm_bindgen(js_namespace = console)]
-    fn log(s: &str);
-}
-
-#[wasm_bindgen]
 pub struct Client
 {
     context: CanvasRenderingContext2d,
@@ -59,7 +52,7 @@ impl Client
     {
         for element in self.elements.iter_mut()
         {
-            element.update(&self.context, width, height);
+            element.update(&self.context, width, height, self.mouse_x, self.mouse_y);
         }
 
         Ok(())

@@ -41,7 +41,16 @@ impl Vector
 
     pub fn magnitude(&self) -> f64
     {
-        (self.x * self.x).sqrt() + (self.y + self.y).sqrt()
+        ((self.x * self.x) + (self.y * self.y)).sqrt()
+    }
+
+    pub fn limit(&mut self, limit_to: f64)
+    {
+        if self.magnitude() > limit_to
+        {
+            self.normalize();
+            self.multiply(limit_to);
+        }
     }
 
     pub fn normalize(&mut self)
