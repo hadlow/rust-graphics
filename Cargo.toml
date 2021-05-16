@@ -1,5 +1,5 @@
 [package]
-name = "rust-graphics"
+name = "rust-physics"
 version = "0.1.0"
 authors = ["Billy Hadlow"]
 edition = "2018"
