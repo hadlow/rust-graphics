@@ -31,7 +31,7 @@ impl Client
 
         let mut elements: Vec<particle::Particle> = Vec::new();
 
-        for _ in 1..11
+        for _ in 1..151
         {
             let particle: particle::Particle = particle::Particle::new(rand::thread_rng().gen_range(0, 500) as f64, rand::thread_rng().gen_range(0, 500) as f64);
 
